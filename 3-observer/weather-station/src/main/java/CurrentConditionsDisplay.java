@@ -6,15 +6,25 @@ public class CurrentConditionsDisplay implements Observer, DisplayElement {
 	public CurrentConditionsDisplay() { };
 	
 	public CurrentConditionsDisplay(WeatherData weatherData) {
-		this.weatherData = weatherData;
-	}
+    this.weatherData = weatherData;
+    // Esta es la línea crucial:
+    weatherData.registerObserver(this); 
+}
 	
 	public void update(float temperature, float humidity, float pressure) {
 		this.temperature = temperature;
 		this.humidity = humidity;
 		display();
 	}
+
+	public float getTemperature(){
+		return temperature;
+	}
 	
+	public float getHumidity(){
+		return humidity;
+	}
+
 	public void display() {
 		System.out.println("Current conditions: " + temperature 
 			+ "F degrees and " + humidity + "% humidity");

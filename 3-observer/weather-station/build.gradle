@@ -6,12 +6,12 @@
  */
 
 plugins {
-	id 'java'
+    id 'java'
     id 'application'
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 java {
@@ -20,38 +20,48 @@ java {
     }
 }
 
-mainClassName = 'DuckSimulator'
+// LÍNEA ORIGINAL COMENTADA: Ya no es necesaria, la movemos y ajustamos abajo
+// mainClassName = 'swing.SwingObserverExample' 
 
 dependencies {
-	testImplementation(platform('org.junit:junit-bom:5.10.2'))
-	testImplementation('org.junit.jupiter:junit-jupiter')
-	testRuntimeOnly('org.junit.platform:junit-platform-launcher')
-	testImplementation("org.assertj:assertj-core:3.27.3")
+    testImplementation(platform('org.junit:junit-bom:5.10.2'))
+    testImplementation('org.junit.jupiter:junit-jupiter')
+    testRuntimeOnly('org.junit.platform:junit-platform-launcher')
+    testImplementation("org.assertj:assertj-core:3.27.3")
 }
 
 test {
-	useJUnitPlatform {
-		testLogging {
-			events "passed", "skipped", "failed"
-      exceptionFormat "full"
-		}
-	}
+    useJUnitPlatform {
+        testLogging {
+            events "passed", "skipped", "failed"
+            exceptionFormat "full"
+        }
+    }
 }
 
 javadoc {
-	source = sourceSets.main.allJava
-	options.tags = [ 'pre:a:Pre:', 'post:a:Post:']
-	destinationDir = file('docs')
+    source = sourceSets.main.allJava
+    options.tags = [ 'pre:a:Pre:', 'post:a:Post:']
+    destinationDir = file('docs')
 }
 
 
 task cleanDocs(type: Delete) {
-	delete 'docs'
+    delete 'docs'
 }
 
 clean.dependsOn cleanDocs
 
 
 run {
-	standardInput = System.in
+    standardInput = System.in
+}
+
+// ===============================================
+// SOLUCIÓN AL ERROR: Se añade el bloque 'application'
+// y se renombra 'mainClassName' a 'mainClass'
+// ===============================================
+application {
+    // Usamos 'mainClass' dentro del bloque 'application'
+    mainClass = 'swing.SwingObserverExample'
 }

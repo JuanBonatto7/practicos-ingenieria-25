@@ -1,3 +1,5 @@
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
 public class TestObservers {
@@ -39,6 +41,21 @@ public class TestObservers {
 
         weatherData.removeObserver(forecastDisplay);
         weatherData.setMeasurements(62, 90, 28.1f);
+    }
+
+    @Test
+    void testCurrentConditionsDisplayUpdate() {
+        // Arrange (Organizar)
+        WeatherData weatherData = new WeatherData();
+        CurrentConditionsDisplay currentDisplay = new CurrentConditionsDisplay(weatherData);
+        
+
+        // Act (Actuar)
+        weatherData.setMeasurements(80.0f, 65.0f, 30.4f);
+
+        // Assert (Verificar)
+        assertEquals(80.0f, currentDisplay.getTemperature());
+        assertEquals(65.0f, currentDisplay.getHumidity());
     }
 
 }
