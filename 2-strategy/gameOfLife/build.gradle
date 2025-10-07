@@ -20,7 +20,9 @@ java {
     }
 }
 
-mainClassName = 'GameOfLife'
+application {
+    mainClass = 'gameOfLife.GameMain'
+}
 
 dependencies {
 	testImplementation(platform('org.junit:junit-bom:5.10.2'))
@@ -55,3 +57,5 @@ clean.dependsOn cleanDocs
 run {
 	standardInput = System.in
 }
+
+

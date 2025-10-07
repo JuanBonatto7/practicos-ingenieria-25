@@ -64,4 +64,18 @@ public class GameOfLife {
         }
         return vecinosVivos;
     }
+
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Generation:\n");
+        
+        for (boolean[] matrix1 : matrix) {
+            for (int j = 0; j < matrix1.length; j++) {
+                sb.append(matrix1[j] ? 'X' : '_');
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
 }
