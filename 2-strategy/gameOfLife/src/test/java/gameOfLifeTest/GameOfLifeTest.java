@@ -1,6 +1,9 @@
-package gameOfLife;
+package gameOfLifeTest;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.Test;
+
+import gameOfLife.ClasicRules;
+import gameOfLife.GameOfLife;
 
 public class GameOfLifeTest {
     
@@ -14,6 +17,4 @@ public class GameOfLifeTest {
         game.nextState();
         assertFalse(cel);
     }
-
-
 }
