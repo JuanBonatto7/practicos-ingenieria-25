@@ -14,7 +14,7 @@ public class Cell {
     }
 
     public Color getColor(){
-        return colorStrategy.getColor(state);
+        return colorStrategy.setColor(state);
     }
 
     public boolean isAlive(){

@@ -2,7 +2,7 @@ package gameOfLife;
 public class ClassicColorStrategy implements ColorStrategy {
     
     @Override
-    public Color getColor(boolean isAlive) {
+    public Color setColor(boolean isAlive) {
         return isAlive ? new Color("BLACK") : new Color("WHITE");
     
     }

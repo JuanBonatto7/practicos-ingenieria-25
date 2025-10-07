@@ -1,4 +1,5 @@
 package gameOfLifeTest;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
@@ -9,7 +10,6 @@ import gameOfLife.ClassicColorStrategy;
 import gameOfLife.Color;
 import gameOfLife.ColorStrategy;
 import gameOfLife.GameOfLife;
-import gameOfLife.NewRules;
 
 public class GameOfLifeTest {
     
@@ -61,7 +61,7 @@ public class GameOfLifeTest {
         game.nextState();
         Cell cel = game.getCell(2,2);
         
-        assert("WHITE", cel.getColor());
+        assertEquals(new Color("BLACK"), cel.getColor());
     }
 
 }

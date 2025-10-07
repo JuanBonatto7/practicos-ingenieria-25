@@ -20,7 +20,7 @@ public class GameOfLife {
     }
     
 
-    public void setCell(int row, int col,ColorStrategy color){
+    public void setCell(int row, int col, ColorStrategy color){
        matrix[row][col] = new Cell(true, color); 
     }
 

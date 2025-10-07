@@ -12,4 +12,5 @@ public class NewRules implements Rules {
             state = neighborsAlives == 3;
         }
         return new Cell(state, cell.getColorStrategy());
+    }
 }

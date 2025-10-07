@@ -1,4 +1,4 @@
 package gameOfLife;
 public interface ColorStrategy {
-    Color getColor(boolean isAlive);
+    Color setColor(boolean isAlive);
 }
