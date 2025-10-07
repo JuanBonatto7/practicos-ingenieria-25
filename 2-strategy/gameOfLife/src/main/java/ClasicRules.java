@@ -1,3 +1,5 @@
+package gameOfLife;
+
 public class ClasicRules implements Rules {
     
     public boolean applyRules(int neighborsAlives, boolean isAlive){

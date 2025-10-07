@@ -1,3 +1,4 @@
+package gameOfLife;
 public class GameOfLife {
     private boolean[][] matrix;
     private Rules rule;
