@@ -2,13 +2,14 @@ package gameOfLife;
 
 public class ClasicRules implements Rules {
     
-    public boolean applyRules(int neighborsAlives, boolean isAlive){
+    public Cell applyRules(int neighborsAlives, Cell cell){
+        boolean isAlive = cell.isAlive();
+        boolean state;
         if(isAlive){
-            boolean state = neighborsAlives == 2 || neighborsAlives == 3;
-            return state;
+            state = neighborsAlives == 2 || neighborsAlives == 3;
         } else {
-            boolean state = neighborsAlives == 3;
-            return state;
+            state = neighborsAlives == 3;
         }
+        return new Cell(state, cell.getColorStrategy());
     }
 }

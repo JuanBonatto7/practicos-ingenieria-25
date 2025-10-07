@@ -1,35 +1,47 @@
 package gameOfLife;
+
 public class GameOfLife {
-    private boolean[][] matrix;
+    private Cell[][] matrix;
     private Rules rule;
+    private ColorStrategy colorStrategy;
     private int rows;
     private int cols;
 
-    public GameOfLife(int rows, int cols, Rules rule){
+    public GameOfLife(int rows, int cols, Rules rule, ColorStrategy colorStrategy){
         this.rows = rows;
         this.cols = cols;
-        this.matrix = new boolean[rows][cols];
+        this.matrix = new Cell[rows][cols];
         this.rule = rule; 
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                matrix[i][j] = new Cell(false, colorStrategy);
+            }
+        }
+    }
+    
+
+    public void setCell(int row, int col,ColorStrategy color){
+       matrix[row][col] = new Cell(true, color); 
     }
 
-    public void setCelula(int row, int col){
-        matrix[row][col] = true;
-    }
-
-    public boolean getCelula(int row, int col){
+    public Cell getCell(int row, int col){
         return matrix[row][col];
     }
 
+    public ColorStrategy getColorStrategy(){
+        return colorStrategy;
+    }
+
     public void nextState(){
-        boolean[][] newMatrix = new boolean[rows][cols];
+        Cell[][] newMatrix = new Cell[rows][cols];
         int neighbor;
         
         for(int i = 0; i < rows; i++){
             for(int j = 0; j < cols; j++){
                 neighbor = CountLives(i, j);
-                boolean state = matrix[i][j];
+                Cell cell = matrix[i][j];
 
-                newMatrix[i][j] = rule.applyRules(neighbor, state);
+                newMatrix[i][j] = rule.applyRules(neighbor, cell);
             }
         }
 
@@ -56,7 +68,10 @@ public class GameOfLife {
                     vecinoCol >= 0 && vecinoCol < this.cols) {
                     
                     // Si el vecino está vivo, lo contamos.
-                    if (matrix[vecinoFila][vecinoCol]) {
+                    Cell cell = matrix[vecinoFila][vecinoCol];
+                    boolean state = cell.isAlive();
+
+                    if (state) {
                         vecinosVivos++;
                     }
                 }
@@ -70,9 +85,11 @@ public class GameOfLife {
         StringBuilder sb = new StringBuilder();
         sb.append("Generation:\n");
         
-        for (boolean[] matrix1 : matrix) {
+        for (Cell[] matrix1 : matrix) {
             for (int j = 0; j < matrix1.length; j++) {
-                sb.append(matrix1[j] ? 'X' : '_');
+                Cell cel = matrix1[j];
+                boolean state = cel.isAlive();
+                sb.append(state ? 'X' : '_');
             }
             sb.append("\n");
         }

@@ -1,4 +1,4 @@
 package gameOfLife;
 public interface Rules {
-    public boolean applyRules(int neighborsAlives, boolean isAlive);
+    public Cell applyRules(int neighborsAlives, Cell cell);
 }
