@@ -3,7 +3,7 @@ package gameOfLife;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameOfLife {
+public class GameOfLife implements GameModel {
     private Cell[][] matrix;
     private Rules rule;
     private ColorStrategy colorStrategy;
@@ -26,22 +26,25 @@ public class GameOfLife {
     }
 }
 
-// El método público para registrar observadores (que ya deberías tener de la interfaz Subject)
-public void addObserver(DisplaysGameOfLife observer) {
-    this.displays.add(observer);
-}
-
-    public void addDisplay(DisplaysGameOfLife display){
-        displays.add(display);
+    @Override
+    public Cell[][] getBoard() {
+        // TODO Auto-generated method stub
+        return matrix;
     }
 
-    public void removeDisplay(DisplaysGameOfLife display){
+    // El método público para registrar observadores (que ya deberías tener de la interfaz Subject)
+    public void addObserver(DisplaysGameOfLife observer) {
+    this.displays.add(observer);
+    }
+
+
+    public void removeObserver(DisplaysGameOfLife display){
         displays.remove(display);
     }
 
     public void notifyDisplays(){
         for( DisplaysGameOfLife d : displays){
-            d.display(matrix);
+            d.display(this);
         }
     }
     
@@ -108,18 +111,4 @@ public void addObserver(DisplaysGameOfLife observer) {
     }
 
 
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Generation:\n");
-        
-        for (Cell[] matrix1 : matrix) {
-            for (int j = 0; j < matrix1.length; j++) {
-                Cell cel = matrix1[j];
-                boolean state = cel.isAlive();
-                sb.append(state ? 'X' : '_');
-            }
-            sb.append("\n");
-        }
-        return sb.toString();
-    }
 }

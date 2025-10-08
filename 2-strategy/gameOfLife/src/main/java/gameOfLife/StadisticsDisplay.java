@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StadisticsDisplay implements DisplaysGameOfLife {
-    public void display(Cell[][] table) {
+    public void display(GameModel model) {
+        Cell[][] table = model.getBoard();
+        
         // Usamos un Map para contar las células de cada tipo (color).
         Map<String, Integer> conteoPorTipo = new HashMap<>();
     
