@@ -4,17 +4,16 @@ public class GameMain {
     private GameOfLife game = new GameOfLife(
         10, 10,
         new NewRules(),
-        new ClassicColorStrategy(),
-        new BlackAndWhiteDisplay() // 👈 Display agregado desde el constructor
-    );
+        new ClassicColorStrategy());
     
     public void execute() {
         int i = 5;
-        ColorStrategy color = game.getColorStrategy();
+        game.addDisplay(new BlackAndWhiteDisplay());
+        game.addDisplay(new StadisticsDisplay());
 
-        game.setCell(1, 1, color);
-        game.setCell(1, 2, color);
-        game.setCell(1, 3, color);
+        game.setCell(1, 1);
+        game.setCell(1, 2);
+        game.setCell(1, 3);
 
         // 🔔 El display se va a actualizar automáticamente en cada iteración
         while (i > 0) {

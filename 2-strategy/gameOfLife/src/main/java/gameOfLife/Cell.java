@@ -5,6 +5,12 @@ public class Cell {
     private ColorStrategy colorStrategy;
 
     public Cell(boolean state, ColorStrategy colorStrategy){
+        if (colorStrategy == null) {
+            // Esto hará que el programa falle inmediatamente con un mensaje claro.
+            throw new IllegalArgumentException(
+                "Error de diseño: Se intentó crear una Célula con una ColorStrategy nula."
+            );
+        }
         this.state = state;
         this.colorStrategy = colorStrategy;
     }
@@ -14,7 +20,7 @@ public class Cell {
     }
 
     public Color getColor(){
-        return colorStrategy.setColor(state);
+        return this.colorStrategy.setColor(this.isAlive());
     }
 
     public boolean isAlive(){

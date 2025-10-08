@@ -11,19 +11,25 @@ public class GameOfLife {
     private int cols;
     private List<DisplaysGameOfLife> displays = new ArrayList<>();
 
-    public GameOfLife(int rows, int cols, Rules rule, ColorStrategy colorStrategy, DisplaysGameOfLife observer){
-        this.rows = rows;
-        this.cols = cols;
-        this.matrix = new Cell[rows][cols];
-        this.rule = rule; 
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                matrix[i][j] = new Cell(false, colorStrategy);
-            }
-        }
-        this.displays.add(observer);
+    public GameOfLife(int rows, int cols, Rules rule, ColorStrategy colorStrategy) {
+    this.rows = rows;
+    this.cols = cols;
+    this.matrix = new Cell[rows][cols];
+    this.rule = rule; 
+    this.colorStrategy = colorStrategy;
+    this.displays = new ArrayList<>(); // Solo inicializamos la lista
 
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            matrix[i][j] = new Cell(false, this.colorStrategy);
+        }
     }
+}
+
+// El método público para registrar observadores (que ya deberías tener de la interfaz Subject)
+public void addObserver(DisplaysGameOfLife observer) {
+    this.displays.add(observer);
+}
 
     public void addDisplay(DisplaysGameOfLife display){
         displays.add(display);
@@ -40,8 +46,8 @@ public class GameOfLife {
     }
     
 
-    public void setCell(int row, int col, ColorStrategy color){
-       matrix[row][col] = new Cell(true, color); 
+    public void setCell(int row, int col){
+       matrix[row][col] = new Cell(true, this.colorStrategy); 
     }
 
     public Cell getCell(int row, int col){
