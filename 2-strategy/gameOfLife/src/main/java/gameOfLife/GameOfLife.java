@@ -1,13 +1,17 @@
 package gameOfLife;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameOfLife {
     private Cell[][] matrix;
     private Rules rule;
     private ColorStrategy colorStrategy;
     private int rows;
     private int cols;
+    private List<DisplaysGameOfLife> displays = new ArrayList<>();
 
-    public GameOfLife(int rows, int cols, Rules rule, ColorStrategy colorStrategy){
+    public GameOfLife(int rows, int cols, Rules rule, ColorStrategy colorStrategy, DisplaysGameOfLife observer){
         this.rows = rows;
         this.cols = cols;
         this.matrix = new Cell[rows][cols];
@@ -16,6 +20,22 @@ public class GameOfLife {
             for (int j = 0; j < cols; j++) {
                 matrix[i][j] = new Cell(false, colorStrategy);
             }
+        }
+        this.displays.add(observer);
+
+    }
+
+    public void addDisplay(DisplaysGameOfLife display){
+        displays.add(display);
+    }
+
+    public void removeDisplay(DisplaysGameOfLife display){
+        displays.remove(display);
+    }
+
+    public void notifyDisplays(){
+        for( DisplaysGameOfLife d : displays){
+            d.display(matrix);
         }
     }
     
@@ -46,6 +66,7 @@ public class GameOfLife {
         }
 
         this.matrix = newMatrix;
+        notifyDisplays();
     }
 
     public int CountLives(int fila, int col){

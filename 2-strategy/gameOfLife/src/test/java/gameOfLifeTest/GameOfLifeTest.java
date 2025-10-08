@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
+import gameOfLife.BlackAndWhiteDisplay;
 import gameOfLife.Cell;
 import gameOfLife.ClasicRules;
 import gameOfLife.ClassicColorStrategy;
@@ -15,7 +16,9 @@ public class GameOfLifeTest {
     
     @Test
     public void celulaSinVecinos(){
-        GameOfLife game = new GameOfLife(3,3, new ClasicRules(), new ClassicColorStrategy());
+        GameOfLife game = new GameOfLife(3, 3 , new ClasicRules(), new ClassicColorStrategy(), new BlackAndWhiteDisplay());
+
+        
         ColorStrategy color = game.getColorStrategy();
         game.setCell(1,1,color);
 
@@ -26,7 +29,7 @@ public class GameOfLifeTest {
 
     @Test
     public void celulaConVecinos(){
-        GameOfLife game = new GameOfLife(3,3, new ClasicRules(), new ClassicColorStrategy());
+        GameOfLife game = new GameOfLife(3,3, new ClasicRules(), new ClassicColorStrategy(), new BlackAndWhiteDisplay());
         ColorStrategy color = game.getColorStrategy();
         game.setCell(1,1,color);
         game.setCell(2,1,color);
@@ -39,7 +42,7 @@ public class GameOfLifeTest {
 
     @Test
     public void newRulesTest(){
-        GameOfLife game = new GameOfLife(3,3, new ClasicRules(), new ClassicColorStrategy());
+        GameOfLife game = new GameOfLife(3,3, new ClasicRules(), new ClassicColorStrategy(), new BlackAndWhiteDisplay());
         ColorStrategy color = game.getColorStrategy();
         game.setCell(1,1,color);
         game.setCell(2,1,color);
@@ -52,7 +55,7 @@ public class GameOfLifeTest {
 
     @Test
     public void ColorStrategy(){
-        GameOfLife game = new GameOfLife(3,3, new ClasicRules(), new ClassicColorStrategy());
+        GameOfLife game = new GameOfLife(3,3, new ClasicRules(), new ClassicColorStrategy(), new BlackAndWhiteDisplay());
         ColorStrategy color = game.getColorStrategy();
         game.setCell(1,1,color);
         game.setCell(2,1,color);
