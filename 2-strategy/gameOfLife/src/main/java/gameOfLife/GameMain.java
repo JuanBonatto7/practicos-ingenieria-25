@@ -20,7 +20,7 @@ public class GameMain {
             game.nextState();
             i--;
             try {
-                Thread.sleep(500); // Pausa para ver el cambio entre generaciones
+                Thread.sleep(2000); // Pausa para ver el cambio entre generaciones
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
