@@ -1,10 +1,8 @@
 package gameOfLife;
 
 public class GameMain {
-    private GameOfLife game = new GameOfLife(
-        10, 10,
-        new NewRules(),
-        new ClassicColorStrategy());
+    private GameFactory factory = new ClasicGameCreator();
+    private GameOfLife game = factory.CreateGame(10, 10);
     
     public void execute() {
         int i = 5;
@@ -14,6 +12,11 @@ public class GameMain {
         game.setCell(1, 1);
         game.setCell(1, 2);
         game.setCell(1, 3);
+        game.setCell(7, 7);
+        game.setCell(7, 8);
+        game.setCell(8, 8);
+        game.setCell(2, 2);
+        game.setCell(8,6);
 
         // 🔔 El display se va a actualizar automáticamente en cada iteración
         while (i > 0) {
