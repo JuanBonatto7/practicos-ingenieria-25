@@ -1,3 +1,6 @@
+
+import org.junit.jupiter.api.*;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -5,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import testing.partition.practico.ejercicio5.BoundedQueue;
+
 public class BoundedQueueTest2 {
     /*
      * C1 capacity
@@ -25,45 +29,37 @@ public class BoundedQueueTest2 {
      * 
     */
 
-    BoundedQueue queue;
+    private BoundedQueue queue;
 
-    @BeforeEach
-    void setUp() {
-        // C1.B2: capacity > 0 
+
+    //Caso Base c1.b2, c2.b2, c3.b3
+    @Test
+    public void testBase(){
         queue = new BoundedQueue(7);
-        // C3.B3: Estado Parcial (Agregamos 1 elemento)
         queue.enQueue("A");
-    }
-
-    //Caso Base c1.b2, c2.b2, c3.b3
-    @Test
-    public void testBaseEnqueue(){
-        //C2.B2 o != null
         Object o = "B";
+
         queue.enQueue(o);
-
-        assertFalse(queue.isFull());
+        Object deletd = queue.deQueue();
+        assertEquals("B", deletd);
         assertFalse(queue.isEmpty());
-    }
-
-    //Caso Base c1.b2, c2.b2, c3.b3
-    @Test
-    public void testBasedequeue(){
-        Object obj = queue.deQueue();
-        assertEquals(obj, "A");
-        assertTrue(queue.isEmpty());
-    }
-
-    //Caso Base c1.b2, c2.b2, c3.b3
-    @Test
-    public void testBaseIsEmpty(){
-        assertFalse(queue.isEmpty());
-    }
-
-    //Caso Base c1.b2, c2.b2, c3.b3
-    @Test
-    public void testBaseIsFul(){
         assertFalse(queue.isFull());
     }
 
+    //Segundo caso: c1.B2, c2.B2, c3.B1
+    @Test
+    public void test2(){
+        queue = new BoundedQueue(3);
+        queue.enQueue("A");
+        queue.enQueue("A");
+        queue.enQueue("A");
+        
+        assertTrue(queue.isFull());
+        assertFalse(queue.isEmpty());
+
+        Object o = "B";
+        assertThrows(IllegalStateException.class, queue.enQueue(o));
+
+    }
+    
 }
