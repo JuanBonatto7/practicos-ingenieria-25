@@ -23,23 +23,39 @@ public class Thermostat
    // Decide whether to turn the heater on, and for how long.
    public boolean turnHeaterOn (ProgrammedSettings pSet)
    {
+      //i1
       int dTemp = pSet.getSetting(period, day);
 
+      //D1
       if (((curTemp < dTemp - thresholdDiff) ||
            (override && curTemp < overTemp - thresholdDiff)) &&
            (timeSinceLastRun > minLag))
-      {  // Turn on the heater
+      {  
+         //----- D1 True -------
+         
+         // Turn on the heater
          // How long? Assume 1 minute per degree (Fahrenheit)
+         //i2
          int timeNeeded = Math.abs(dTemp - curTemp); // abs() added May 2020
+         
+         //D2
          if (override)
+            //----------D2 True----------
+            //i3
             timeNeeded = Math.abs(overTemp - curTemp); // abs() added May 2020
+         //i4
          setRunTime(timeNeeded);
+         //i5
          setHeaterOn(true);
+         //i6
          return(true);
       }
       else
       {
+         //------- D1 False ------------
+         //i7
          setHeaterOn(false);
+         //i8
          return(false);
       }
    } // End turnHeaterOn
@@ -57,7 +73,7 @@ public class Thermostat
 
    // outputs from turnHeaterOn
    void    setRunTime(int minutes)    { runTime = minutes; }
-   int     getRunTime()               { return runTime; }
+   public int     getRunTime()               { return runTime; }
    void    setHeaterOn(boolean value) { heaterOn = value; }
-   boolean getHeaterOn()              { return heaterOn; }
+   public boolean getHeaterOn()              { return heaterOn; }
 } // End Thermostat class

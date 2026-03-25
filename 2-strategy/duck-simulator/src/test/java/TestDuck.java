@@ -23,5 +23,28 @@ public class TestDuck {
         model.setFlyBehavior(new FlyRocketPowered());
         model.performFly();
     }
+    
+    @Test
+    public void testPatoCriollo() {
+        Duck criollo = new PatoCriollo();
+        criollo.performQuack();
+        criollo.performFly();
+    }
+
+    @Test
+    public void testPatoCriolloChangeFlyBehavior() {
+        Duck criollo = new PatoCriollo();
+        criollo.performFly();
+        criollo.setFlyBehavior(new FlyRocketPowered());
+        criollo.performFly();
+    }
+
+    @Test 
+    public void testPaty()
+    {
+        Duck paty = new FranPato();
+        paty.performFly();
+        paty.performQuack();
+    }
 
 }

@@ -8,7 +8,7 @@ public class IPBlacklist {
 	
 	private LinkedList<String> IPblacklist;
 	
-	String lastip;
+	public String lastip;
 	int numOfRetries;
 	
 	private LoginService service;
@@ -49,7 +49,7 @@ public class IPBlacklist {
 		
 	}
 	
-	private void blacklistIP(String ip) {
+	public void blacklistIP(String ip) {
 			IPblacklist.add(ip);
 	}
 	

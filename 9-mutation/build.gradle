@@ -9,7 +9,7 @@ plugins {
 	id 'java'
     id 'application'
 	id 'jacoco'
-	id 'info.solidsoft.pitest' version '1.19.0-rc.2'
+	id 'info.solidsoft.pitest' version '1.15.0'
 }
 
 repositories {
@@ -18,7 +18,7 @@ repositories {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(17)
     }
 }
 
@@ -38,12 +38,11 @@ dependencies {
 }
 
 test {
-	useJUnitPlatform {
-		testLogging {
-			events "passed", "skipped", "failed"
-      exceptionFormat "full"
-		}
-	}
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+        exceptionFormat "full"
+    }
 }
 
 javadoc {
@@ -69,12 +68,12 @@ jacocoTestReport {
 }
 
 pitest {
-	junit5PluginVersion = '1.2.3'
-	targetClasses = ['mutation.ejercicio4.*']
-//	pitestVersion = '1.20.3'
-	threads = 4
-	outputFormats = ['XML', 'HTML']
-	timestampedReports = false
+    junit5PluginVersion = '1.2.1'
+    targetClasses = ['mutation.ejercicio4.*']
+    targetTests = ['mutation.ejercicio4.*'] // <-- Esto está perfecto
+    threads = 4
+    outputFormats = ['XML', 'HTML']
+    timestampedReports = false
 }
 
 /*
@@ -98,4 +97,3 @@ check.dependsOn jacocoTestCoverageVerification
 
 build.dependsOn 'pitest'
 */
-
